@@ -167,7 +167,7 @@ def train_epoch(model, train_dataloader, optimizer, scheduler, logger,
     model_path_del = join(args.save_model_path, 'epoch{}'.format(epoch))
     if os.path.exists(model_path_del):
         shutil.rmtree(model_path_del)
-        os.path.removedirs(model_path_del)
+        os.removedirs(model_path_del)
 
     return epoch_mean_loss
 
