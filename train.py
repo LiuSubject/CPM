@@ -23,6 +23,7 @@ import pandas as pd
 import torch.nn.utils.rnn as rnn_utils
 import numpy as np
 from dataset import CPMDataset
+import shutil
 
 
 def set_args():
@@ -161,6 +162,12 @@ def train_epoch(model, train_dataloader, optimizer, scheduler, logger,
     logger.info('epoch {} finished'.format(epoch + 1))
     epoch_finish_time = datetime.now()
     logger.info('time for one epoch: {}'.format(epoch_finish_time - epoch_start_time))
+
+    # 删除旧文件
+    model_path_del = join(args.save_model_path, 'epoch{}'.format(epoch))
+    if os.path.exists(model_path_del):
+        shutil.rmtree(model_path_del)
+        os.path.removedirs(model_path_del)
 
     return epoch_mean_loss
 
