@@ -71,6 +71,8 @@ if __name__ == '__main__':
     # parser.add_argument('--context', type=str, default='一本书是一个人的眼睛，它可以让你看到另一个世界的奇妙', help='作文上文')
     parser.add_argument('--title', type=str, default='家乡的四季', help='作文标题')
     parser.add_argument('--context', type=str, default='家乡的四季,最美不过了', help='作文上文')
+    parser.add_argument('--size', type=int, default=8, help='输出次数')
+
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.device  # 此处设置程序使用哪些显卡
@@ -92,15 +94,16 @@ if __name__ == '__main__':
     model.eval()
     model = model.to(device)
 
-    title = args.title
-    context = args.context
-    logger.info("title:{}".format(title))
-    logger.info("context:{}".format(context))
+    for i in range(args.size):
+        title = args.title
+        context = args.context
+        logger.info("title:{}".format(title))
+        logger.info("context:{}".format(context))
 
-    # 开始生成
-    result = generate(args.max_len)
-    result = result.split("<sep>")[1]
-    logger.info("result:{}\n".format(result))
+        # 开始生成
+        result = generate(args.max_len)
+        result = result.split("<sep>")[1]
+        logger.info("result:{}\n".format(result))
 
     # 通过控制台循环生成
     # print('开始生成，输入CTRL + Z以退出')
