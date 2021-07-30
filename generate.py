@@ -93,13 +93,12 @@ if __name__ == '__main__':
     model = GPT2LMHeadModel.from_pretrained(args.model_path)
     model.eval()
     model = model.to(device)
+    title = args.title
+    context = args.context
+    logger.info("title:{}".format(title))
+    logger.info("context:{}".format(context))
 
     for i in range(args.size):
-        title = args.title
-        context = args.context
-        logger.info("title:{}".format(title))
-        logger.info("context:{}".format(context))
-
         # 开始生成
         result = generate(args.max_len)
         result = result.split("<sep>")[1]
