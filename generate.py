@@ -71,7 +71,7 @@ if __name__ == '__main__':
     # parser.add_argument('--context', type=str, default='一本书是一个人的眼睛，它可以让你看到另一个世界的奇妙', help='作文上文')
     parser.add_argument('--title', type=str, default='家乡的四季', help='作文标题')
     parser.add_argument('--context', type=str, default='家乡的四季,最美不过了', help='作文上文')
-    parser.add_argument('--size', type=int, default=8, help='输出次数')
+    parser.add_argument('--size', type=int, default=4, help='输出次数')
 
     args = parser.parse_args()
 
